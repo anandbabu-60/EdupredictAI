@@ -383,6 +383,36 @@ const AuthService = (function() {
     return res;
   }
 
+  const DEMO_TRIALS_KEY = 'edupredict_demo_trials_count';
+  const MAX_DEMO_TRIALS = 3;
+
+  function isDemoUser() {
+    const user = getCurrentUser();
+    return Boolean(user && (user.isDemo === true || user.email === 'demo@edupredict.local'));
+  }
+
+  function getDemoTrialsCount() {
+    return parseInt(localStorage.getItem(DEMO_TRIALS_KEY) || '0', 10);
+  }
+
+  function getRemainingDemoTrials() {
+    return Math.max(0, MAX_DEMO_TRIALS - getDemoTrialsCount());
+  }
+
+  function incrementDemoTrialsCount() {
+    const nextCount = getDemoTrialsCount() + 1;
+    localStorage.setItem(DEMO_TRIALS_KEY, nextCount.toString());
+    return nextCount;
+  }
+
+  function hasExceededDemoTrials() {
+    return isDemoUser() && getDemoTrialsCount() >= MAX_DEMO_TRIALS;
+  }
+
+  function resetDemoTrialsCount() {
+    localStorage.removeItem(DEMO_TRIALS_KEY);
+  }
+
   return {
     registerUser,
     loginUser,
@@ -394,7 +424,13 @@ const AuthService = (function() {
     isAuthenticated,
     getCurrentUser,
     requireAuth,
-    initDemoDataset
+    initDemoDataset,
+    isDemoUser,
+    getDemoTrialsCount,
+    getRemainingDemoTrials,
+    incrementDemoTrialsCount,
+    hasExceededDemoTrials,
+    resetDemoTrialsCount
   };
 })();
 
