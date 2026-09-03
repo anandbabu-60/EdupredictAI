@@ -85,12 +85,9 @@ function syncTopbarUserData() {
   // Demo Mode Badge
   const demoBadgeEl = document.getElementById('demoModeBadge');
   if (demoBadgeEl) {
+    demoBadgeEl.style.display = isDemo ? 'inline-flex' : 'none';
     if (isDemo) {
-      demoBadgeEl.style.display = 'inline-flex';
-      const remaining = window.AuthService ? AuthService.getRemainingDemoTrials() : 3;
-      demoBadgeEl.innerHTML = `<i class="fa-solid fa-flask"></i> DEMO MODE (${remaining} of 3 Trials Remaining)`;
-    } else {
-      demoBadgeEl.style.display = 'none';
+      demoBadgeEl.innerHTML = `<i class="fa-solid fa-flask"></i> DEMO MODE`;
     }
   }
 }

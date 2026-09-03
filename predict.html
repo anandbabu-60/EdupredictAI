@@ -125,26 +125,6 @@
           </div>
         </div>
 
-        <!-- Demo Mode Status Alert Banner (Shown only for guest demo users) -->
-        <div id="demoTrialsBanner" class="card" style="display: none; background: rgba(79, 70, 229, 0.06); border: 1px solid rgba(79, 70, 229, 0.25); padding: 0.85rem 1.25rem; margin-bottom: 1.5rem; border-radius: var(--radius-md); display: none; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;">
-          <div style="display: flex; align-items: center; gap: 0.75rem;">
-            <div style="width: 36px; height: 36px; border-radius: 50%; background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 1rem;">
-              <i class="fa-solid fa-wand-magic-sparkles"></i>
-            </div>
-            <div>
-              <div style="font-weight: 700; font-size: 0.9rem; color: var(--text-main);" id="demoTrialsTitle">
-                Demo Guest Evaluation Session
-              </div>
-              <div style="font-size: 0.8rem; color: var(--text-muted);" id="demoTrialsSubtitle">
-                You have <strong><span id="demoTrialsLeft">3</span> of 3</strong> free demo predictions remaining.
-              </div>
-            </div>
-          </div>
-          <a href="login.html" class="btn btn-primary btn-sm" style="font-weight: 600;">
-            <i class="fa-solid fa-right-to-bracket"></i> Login for Unlimited Access
-          </a>
-        </div>
-
         <!-- 19-Feature Prediction Form -->
         <div class="prediction-form-card">
           <form id="predictionForm" novalidate>
@@ -435,34 +415,10 @@
     </ul>
   </div>
 
-  <!-- Demo Trial Limit Modal -->
-  <div class="modal-overlay" id="demoLimitModal">
-    <div class="modal-dialog" style="max-width: 480px; text-align: center; padding: 2.25rem;">
-      <div style="width: 70px; height: 70px; border-radius: 50%; background: #fee2e2; color: #dc2626; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1.25rem; box-shadow: 0 4px 12px rgba(220, 38, 38, 0.15);">
-        <i class="fa-solid fa-lock"></i>
-      </div>
-      <h3 style="font-size: 1.45rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.75rem;">
-        Demo Trials Ended (3/3 Used)
-      </h3>
-      <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.55; margin-bottom: 1.75rem;">
-        You have used all <strong>3 free guest demo predictions</strong>. To continue making unlimited AI student predictions, saving records to your dashboard, and accessing history, please log in or create your account.
-      </p>
-
-      <div style="display: flex; flex-direction: column; gap: 0.85rem;">
-        <a href="login.html" class="btn btn-primary btn-lg btn-block" style="display: flex; align-items: center; justify-content: center; gap: 0.6rem; font-weight: 700;">
-          <i class="fa-solid fa-right-to-bracket"></i> Login to Your Account
-        </a>
-        <a href="register.html" class="btn btn-secondary btn-lg btn-block" style="display: flex; align-items: center; justify-content: center; gap: 0.6rem; border-color: var(--primary); color: var(--primary); font-weight: 700; background: var(--primary-light);">
-          <i class="fa-solid fa-user-plus"></i> Create Free Account
-        </a>
-      </div>
-    </div>
-  </div>
-
   <!-- Scripts -->
-  <script src="js/api.js?v=2.3"></script>
-  <script src="js/auth.js?v=2.3"></script>
-  <script src="js/app.js?v=2.3"></script>
-  <script src="js/prediction.js?v=2.3"></script>
+  <script src="js/api.js?v=2.4"></script>
+  <script src="js/auth.js?v=2.4"></script>
+  <script src="js/app.js?v=2.4"></script>
+  <script src="js/prediction.js?v=2.4"></script>
 </body>
 </html>

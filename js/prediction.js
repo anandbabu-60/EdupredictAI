@@ -237,19 +237,11 @@ function initPredictionForm(form) {
       updateSliderDisplays();
       App.showToast('Form reset to default values.', 'info');
     });
-  // Update demo trials banner on form load
-  updateDemoTrialsBanner();
+  }
 
   // 3. Form Submit Handler
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-
-    // Check demo trial limits (Max 3 trials for guest evaluation)
-    const isDemo = window.AuthService && AuthService.isDemoUser();
-    if (isDemo && AuthService.hasExceededDemoTrials()) {
-      showDemoLimitModal();
-      return;
-    }
 
     const data = collectFormFeatures();
     const validation = validateFeatures(data);
@@ -273,18 +265,6 @@ function initPredictionForm(form) {
       if (!result) {
         // Fallback local Scikit-learn simulated inference if Flask server unreachable
         result = runFallbackPrediction(data);
-      }
-
-      // Track demo trial usage
-      if (isDemo) {
-        const usedTrials = AuthService.incrementDemoTrialsCount();
-        updateDemoTrialsBanner();
-        const remaining = Math.max(0, 3 - usedTrials);
-        if (remaining > 0) {
-          App.showToast(`Demo Trial ${usedTrials} of 3 used (${remaining} trial${remaining > 1 ? 's' : ''} remaining).`, 'info', 'Demo Trial');
-        } else {
-          App.showToast('You have used all 3 free demo trials. Future predictions will require an account.', 'warning', 'Demo Limit Reached');
-        }
       }
 
       // Generate ID and Timestamp
@@ -330,40 +310,6 @@ function initPredictionForm(form) {
       App.showToast(err.message || 'Unable to connect to the prediction server.', 'danger', 'Prediction Error');
     }
   });
-}
-
-function updateDemoTrialsBanner() {
-  const isDemo = window.AuthService && AuthService.isDemoUser();
-  const banner = document.getElementById('demoTrialsBanner');
-  if (!banner) return;
-
-  if (isDemo) {
-    banner.style.display = 'flex';
-    const remaining = AuthService.getRemainingDemoTrials();
-    const leftEl = document.getElementById('demoTrialsLeft');
-    if (leftEl) leftEl.textContent = remaining;
-
-    const subtitleEl = document.getElementById('demoTrialsSubtitle');
-    if (subtitleEl) {
-      if (remaining > 0) {
-        subtitleEl.innerHTML = `You have <strong><span id="demoTrialsLeft">${remaining}</span> of 3</strong> free demo predictions remaining.`;
-      } else {
-        subtitleEl.innerHTML = `<span style="color: var(--danger); font-weight: 700;">You have used all 3 free demo trials.</span> Please login to continue.`;
-      }
-    }
-  } else {
-    banner.style.display = 'none';
-  }
-}
-
-function showDemoLimitModal() {
-  const modal = document.getElementById('demoLimitModal');
-  if (modal) {
-    modal.classList.add('active');
-  } else {
-    alert('You have used all 3 free demo trials. Please log in or create an account to continue.');
-    window.location.href = 'login.html';
-  }
 }
 
 function bindRangeWithInput(rangeId, inputId, displayId, unit) {
