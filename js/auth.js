@@ -383,6 +383,25 @@ const AuthService = (function() {
     return res;
   }
 
+  /**
+   * Check if a valid authenticated user is already logged in (Auto-redirect)
+   */
+  async function checkAutoLogin() {
+    try {
+      const user = getCurrentUser();
+      if (user && !user.isDemo && isAuthenticated()) {
+        if (window.ApiService) {
+          const res = await ApiService.getMe();
+          if (res && res.authenticated) {
+            window.location.href = 'dashboard.html';
+          }
+        }
+      }
+    } catch (e) {
+      // Stay on auth page
+    }
+  }
+
   function isDemoUser() {
     const user = getCurrentUser();
     return Boolean(user && (user.isDemo === true || user.email === 'demo@edupredict.local'));

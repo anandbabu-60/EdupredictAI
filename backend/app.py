@@ -267,6 +267,16 @@ def load_artifacts():
         logger.error(f"Error loading ML artifacts: {e}", exc_info=True)
 
 
+def get_model():
+    """Returns the active Scikit-learn model, initializing or training if necessary."""
+    global model
+    if model is None:
+        load_artifacts()
+    if model is None:
+        model = create_and_fit_pipeline()
+    return model
+
+
 load_artifacts()
 
 # 19 Schema Contract Features
@@ -961,7 +971,8 @@ def evaluate_single_prediction(features_dict: dict, raw_input: dict) -> dict:
     input_df = pd.DataFrame([[features_dict[col] for col in REQUIRED_FEATURES]], columns=REQUIRED_FEATURES)
     
     # ML Pipeline Inference
-    raw_pred = float(model.predict(input_df)[0])
+    active_model = get_model()
+    raw_pred = float(active_model.predict(input_df)[0])
     final_score = round(max(10.0, min(99.0, raw_pred)), 1)
 
     # Categorization Tier
@@ -1134,9 +1145,9 @@ def predict():
     try:
         # Check presence and types
         numerical_ranges = {
-            "Hours_Studied": (1.0, 50.0, "Hours Studied must be between 1 and 50 hours/week."),
+            "Hours_Studied": (0.0, 50.0, "Hours Studied must be between 0 and 50 hours/week."),
             "Attendance": (0.0, 100.0, "Attendance must be between 0% and 100%."),
-            "Sleep_Hours": (1.0, 24.0, "Sleep Hours must be between 1 and 24 hours/day."),
+            "Sleep_Hours": (0.0, 24.0, "Sleep Hours must be between 0 and 24 hours/day."),
             "Previous_Scores": (0.0, 100.0, "Previous Scores must be between 0 and 100."),
             "Tutoring_Sessions": (0, 20, "Tutoring Sessions must be between 0 and 20."),
             "Physical_Activity": (0.0, 30.0, "Physical Activity must be between 0 and 30 hours/week.")
@@ -1220,7 +1231,8 @@ def predict():
         input_df = pd.DataFrame([[normalized[col] for col in REQUIRED_FEATURES]], columns=REQUIRED_FEATURES)
 
         # 3. Predict Exam_Score using Scikit-learn Pipeline
-        raw_pred = float(model.predict(input_df)[0])
+        active_model = get_model()
+        raw_pred = float(active_model.predict(input_df)[0])
         exam_score = round(max(10.0, min(99.0, raw_pred)), 2)
 
         # 4. Performance category thresholds
