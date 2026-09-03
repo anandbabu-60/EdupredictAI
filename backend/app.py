@@ -170,10 +170,23 @@ def load_artifacts():
     global model, model_metrics, feature_importance
     try:
         if MODEL_PATH.exists():
-            model = joblib.load(MODEL_PATH)
-            logger.info(f"EduPredict ML model loaded successfully from {MODEL_PATH}")
-        else:
-            logger.warning(f"Model file not found at: {MODEL_PATH}")
+            try:
+                model = joblib.load(MODEL_PATH)
+                logger.info(f"EduPredict ML model loaded successfully from {MODEL_PATH}")
+            except Exception as load_err:
+                logger.warning(f"Pre-saved model unpickling failed ({load_err}). Retraining model pipeline automatically...")
+                model = None
+
+        if model is None:
+            try:
+                logger.info("Auto-training Scikit-learn model pipeline on environment...")
+                from train_model import train_and_benchmark
+                train_and_benchmark()
+                if MODEL_PATH.exists():
+                    model = joblib.load(MODEL_PATH)
+                    logger.info("Model pipeline successfully built and loaded.")
+            except Exception as train_err:
+                logger.error(f"Failed to auto-train model: {train_err}", exc_info=True)
 
         if METRICS_PATH.exists():
             with open(METRICS_PATH, "r") as f:
@@ -975,9 +988,9 @@ def evaluate_single_prediction(features_dict: dict, raw_input: dict) -> dict:
 # REST API ENDPOINTS
 # ==============================================================================
 
-@app.route("/", methods=["GET"])
-def index():
-    """Root status endpoint."""
+@app.route("/api", methods=["GET"])
+def api_root():
+    """Root API status endpoint."""
     return jsonify({
         "status": "ok",
         "service": "EduPredict AI Backend",
@@ -1263,7 +1276,7 @@ def predict_batch():
 # ==============================================================================
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
-@app.route("/", defaults={"path": "index.html"})
+@app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
 def serve_frontend(path):
     """Serve frontend HTML, CSS, JS, Assets when hosted on unified production server."""
@@ -1271,21 +1284,26 @@ def serve_frontend(path):
     if path.startswith("api/") or path == "api":
         return jsonify({"status": "error", "message": "API endpoint not found"}), 404
 
-    target_file = PROJECT_ROOT / path
-    if target_file.is_file():
+    # 1. Direct file match (e.g. login.html, css/style.css, js/app.js)
+    if path and (PROJECT_ROOT / path).is_file():
         return send_from_directory(PROJECT_ROOT, path)
 
-    # Fallback to index.html for root or unknown HTML navigation
+    # 2. Extensionless route (e.g. /login -> login.html, /dashboard -> dashboard.html)
+    if path and (PROJECT_ROOT / f"{path}.html").is_file():
+        return send_from_directory(PROJECT_ROOT, f"{path}.html")
+
+    # 3. Default root ("/") -> serve index.html (or login.html)
     index_file = PROJECT_ROOT / "index.html"
     if index_file.is_file():
         return send_from_directory(PROJECT_ROOT, "index.html")
 
-    return jsonify({"status": "error", "message": "File not found"}), 404
+    return jsonify({"status": "error", "message": "Page not found"}), 404
 
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     print(f"EduPredict AI Flask Server running on http://127.0.0.1:{port}")
     app.run(host="0.0.0.0", port=port, debug=False)
+
 
 
