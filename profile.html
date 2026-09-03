@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="EduPredict AI — Educator Profile & System Preferences">
+  <title>Profile & Settings — EduPredict AI</title>
+  
+  <!-- Typography & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+  <div class="app-layout" id="profileView">
+    
+    <!-- Sidebar -->
+    <aside class="app-sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="brand-logo">
+          <div class="brand-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+          <span>EduPredict<span class="highlight">AI</span></span>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <span class="nav-section-title">Main Menu</span>
+        <a href="dashboard.html" class="sidebar-nav-item">
+          <i class="fa-solid fa-chart-pie"></i>
+          <span>Dashboard</span>
+        </a>
+        <a href="predict.html" class="sidebar-nav-item">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          <span>New Prediction</span>
+        </a>
+        <a href="history.html" class="sidebar-nav-item">
+          <i class="fa-solid fa-clock-rotate-left"></i>
+          <span>Prediction History</span>
+        </a>
+
+        <span class="nav-section-title">Account & System</span>
+        <a href="profile.html" class="sidebar-nav-item active">
+          <i class="fa-solid fa-user-gear"></i>
+          <span>Profile & Settings</span>
+        </a>
+        <a href="about.html" class="sidebar-nav-item">
+          <i class="fa-solid fa-circle-info"></i>
+          <span>About Model</span>
+        </a>
+        <a href="login.html" class="sidebar-nav-item logout-trigger-btn">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          <span>Logout</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="profile.html" class="user-snippet" title="Account Details">
+          <div class="user-avatar">SM</div>
+          <div class="user-meta">
+            <div class="user-meta-name user-display-name">Dr. Sarah Mitchell</div>
+            <div class="user-meta-role user-display-role">Faculty Advisor</div>
+          </div>
+          <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; color: var(--text-muted); margin-left: auto;"></i>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="app-main">
+      
+      <!-- Topbar -->
+      <header class="app-topbar">
+        <div class="topbar-left">
+          <button class="sidebar-toggle-btn" id="sidebarToggleBtn" aria-label="Toggle sidebar menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div class="topbar-title">Educator Profile & Preferences</div>
+        </div>
+
+        <div class="topbar-right">
+          <button class="theme-toggle-btn" aria-label="Toggle dark theme" title="Toggle Theme">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+        </div>
+      </header>
+
+      <!-- Content Canvas -->
+      <div class="app-content">
+        
+        <div class="page-header">
+          <div class="page-header-text">
+            <h1>Account Settings</h1>
+            <p>Manage your educator profile information, interface theme, and predictive threshold preferences.</p>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 2rem;">
+          
+          <!-- Column 1: Profile Information -->
+          <div>
+            <div class="card" style="margin-bottom: 2rem;">
+              <div class="card-header">
+                <div class="card-title">
+                  <i class="fa-solid fa-user-circle" style="color: var(--primary); margin-right: 0.5rem;"></i>
+                  Educator Profile
+                </div>
+              </div>
+
+              <form id="profileForm">
+                <div class="form-group">
+                  <label for="profileName" class="form-label">Full Name</label>
+                  <input type="text" id="profileName" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="profileEmail" class="form-label">Email Address</label>
+                  <input type="email" id="profileEmail" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="profileRole" class="form-label">Department / Academic Role</label>
+                  <input type="text" id="profileRole" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="profileInstitution" class="form-label">University / Institution</label>
+                  <input type="text" id="profileInstitution" class="form-control" required>
+                </div>
+
+                <div style="text-align: right; margin-top: 1.5rem;">
+                  <button type="submit" class="btn btn-primary">
+                    <i class="fa-solid fa-check"></i> Save Changes
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <!-- Security Section -->
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">
+                  <i class="fa-solid fa-lock" style="color: var(--primary); margin-right: 0.5rem;"></i>
+                  Security & Password
+                </div>
+              </div>
+
+              <form id="securityPasswordForm">
+                <div class="form-grid-2">
+                  <div class="form-group">
+                    <label for="profileNewPassword" class="form-label">New Password</label>
+                    <input type="password" id="profileNewPassword" class="form-control" placeholder="Minimum 6 characters" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="profileConfirmPassword" class="form-label">Confirm New Password</label>
+                    <input type="password" id="profileConfirmPassword" class="form-control" placeholder="Re-enter new password" required>
+                  </div>
+                </div>
+
+                <div style="text-align: right; margin-top: 1rem;">
+                  <button type="submit" class="btn btn-secondary">
+                    <i class="fa-solid fa-key"></i> Update Password
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Column 2: System Preferences -->
+          <div>
+            <div class="card" style="margin-bottom: 2rem;">
+              <div class="card-header">
+                <div class="card-title">
+                  <i class="fa-solid fa-palette" style="color: var(--primary); margin-right: 0.5rem;"></i>
+                  Interface & Theme
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Appearance Theme</label>
+                <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+                  <button type="button" class="btn btn-secondary btn-block" onclick="App.applyTheme('light'); localStorage.setItem('edupredict_theme', 'light'); App.showToast('Light theme applied.', 'info');">
+                    <i class="fa-solid fa-sun"></i> Light
+                  </button>
+                  <button type="button" class="btn btn-secondary btn-block" onclick="App.applyTheme('dark'); localStorage.setItem('edupredict_theme', 'dark'); App.showToast('Dark theme applied.', 'info');">
+                    <i class="fa-solid fa-moon"></i> Dark
+                  </button>
+                </div>
+              </div>
+
+              <div class="form-group" style="margin-top: 1.5rem;">
+                <label class="form-label">Prediction Risk Alert Threshold</label>
+                <select class="form-control">
+                  <option value="60">Flag scores below 60% (Recommended)</option>
+                  <option value="65">Flag scores below 65%</option>
+                  <option value="70">Flag scores below 70%</option>
+                </select>
+                <span class="form-helper">Controls the cutoff for flagging students needing immediate academic intervention</span>
+              </div>
+            </div>
+
+            <!-- Demo Management Card -->
+            <div class="card" style="border-color: var(--warning-border);">
+              <div class="card-header">
+                <div class="card-title" style="color: var(--warning);">
+                  <i class="fa-solid fa-database" style="margin-right: 0.5rem;"></i>
+                  Demo Dataset Reset
+                </div>
+              </div>
+              <p style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+                Need a fresh slate for testing or presentation? Reset all stored student predictions back to initial benchmark evaluation records.
+              </p>
+              <button type="button" class="btn btn-outline btn-block" id="resetDemoDataBtn" style="color: var(--warning); border-color: var(--warning);">
+                <i class="fa-solid fa-rotate"></i> Reset to Default Demo Data
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/api.js?v=2.2"></script>
+  <script src="js/auth.js?v=2.2"></script>
+  <script src="js/app.js?v=2.2"></script>
+  <script src="js/dashboard.js?v=2.2"></script>
+</body>
+</html>

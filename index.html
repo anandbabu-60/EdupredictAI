@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="EduPredict AI — AI/ML-Powered Student Performance Prediction System. Turn academic and behavioral student data into actionable insights for educators.">
+  <title>EduPredict AI — Student Performance Prediction System</title>
+  
+  <!-- Typography & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo" id="brandLogoLink">
+        <div class="brand-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <span>EduPredict<span class="highlight">AI</span></span>
+      </a>
+
+      <ul class="nav-links" id="mainNavLinks">
+        <li><a href="index.html" class="nav-link active">Home</a></li>
+        <li><a href="#features" class="nav-link">Features</a></li>
+        <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle dark mode" title="Toggle Light/Dark Theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <a href="login.html" class="btn btn-ghost">Login</a>
+        <a href="predict.html" class="btn btn-primary">
+          <i class="fa-solid fa-bolt"></i> Start Prediction
+        </a>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open mobile menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="hero-pill">
+          <i class="fa-solid fa-brain"></i> Machine Learning Powered Academic Intelligence
+        </div>
+        <h1 class="hero-headline">
+          Predict Student Performance with <span class="text-gradient">AI & Data</span>
+        </h1>
+        <p class="hero-subheadline">
+          Use academic and behavioral data to generate data-driven student performance predictions and actionable insights for timely academic interventions.
+        </p>
+
+        <div class="hero-actions">
+          <a href="predict.html" class="btn btn-primary btn-lg">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> Start Prediction
+          </a>
+          <a href="#how-it-works" class="btn btn-secondary btn-lg">
+            <i class="fa-solid fa-circle-play"></i> Explore How It Works
+          </a>
+        </div>
+
+        <div class="hero-trust">
+          <i class="fa-solid fa-shield-check"></i>
+          <span>Machine Learning powered academic insights • Zero guesswork</span>
+        </div>
+      </div>
+
+      <!-- Hero Visual Card Concept -->
+      <div class="hero-visual-card">
+        <div class="hero-visual-preview">
+          <div class="card-header" style="margin-bottom: 1rem; padding-bottom: 0.75rem;">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span style="width: 10px; height: 10px; border-radius: 50%; background: #10b981; display: inline-block;"></span>
+              <strong style="font-size: 0.9rem;">Predictive Model Active</strong>
+            </div>
+            <span class="badge badge-excellent">94% Confidence</span>
+          </div>
+
+          <div class="preview-metric-row">
+            <div class="preview-stat">
+              <span class="stat-num">89%</span>
+              <span class="stat-lbl">Predicted Score</span>
+            </div>
+            <div class="preview-stat">
+              <span class="stat-num">94%</span>
+              <span class="stat-lbl">Attendance</span>
+            </div>
+            <div class="preview-stat">
+              <span class="stat-num">18h</span>
+              <span class="stat-lbl">Weekly Study</span>
+            </div>
+          </div>
+
+          <div style="background: var(--bg-subtle); border-radius: var(--radius-md); padding: 1rem; font-size: 0.85rem; color: var(--text-muted);">
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.4rem; color: var(--text-main); font-weight: 600;">
+              <i class="fa-solid fa-chart-line" style="color: var(--primary);"></i> Key Finding
+            </div>
+            High attendance and consistent internal scores strongly correlate with upper-quartile end-semester results.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="section section-alt" id="features">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Core Capabilities</span>
+        <h2 class="section-title">Built for Early Academic Support</h2>
+        <p class="section-desc">
+          Identify student learning curves early in the semester to enable timely mentoring, tailored study plans, and improved retention rates.
+        </p>
+      </div>
+
+      <div class="features-grid">
+        <!-- Feature 1 -->
+        <div class="feature-card">
+          <div class="feature-icon-wrapper">
+            <i class="fa-solid fa-microchip"></i>
+          </div>
+          <h4>AI-Based Prediction</h4>
+          <p>
+            Trained Machine Learning algorithms evaluate historical score distributions, attendance metrics, and study habits to forecast final marks.
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="feature-card">
+          <div class="feature-icon-wrapper">
+            <i class="fa-solid fa-chart-pie"></i>
+          </div>
+          <h4>Data-Driven Insights</h4>
+          <p>
+            Break down individual feature contributions such as internal tests and assignment consistency to understand root indicators.
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="feature-card">
+          <div class="feature-icon-wrapper">
+            <i class="fa-solid fa-magnifying-glass-chart"></i>
+          </div>
+          <h4>Performance Analysis</h4>
+          <p>
+            Interactive visual dashboards and performance categorizations segment students into actionable tiers from Excellent to At-Risk.
+          </p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="feature-card">
+          <div class="feature-icon-wrapper">
+            <i class="fa-solid fa-compass-drafting"></i>
+          </div>
+          <h4>Actionable Recommendations</h4>
+          <p>
+            Generates realistic pedagogical recommendations tailored to each student's specific academic strengths and improvement areas.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="section" id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Methodology</span>
+        <h2 class="section-title">3-Step Predictive Workflow</h2>
+        <p class="section-desc">
+          From raw student attributes to actionable recommendations in seconds.
+        </p>
+      </div>
+
+      <div class="workflow-grid">
+        <div class="workflow-card">
+          <span class="step-number">01</span>
+          <div class="workflow-icon"><i class="fa-solid fa-clipboard-user"></i></div>
+          <h4>Enter Student Data</h4>
+          <p>
+            Educators or students input key academic metrics: weekly study hours, attendance percentages, previous exam results, and assignments.
+          </p>
+        </div>
+
+        <div class="workflow-card">
+          <span class="step-number">02</span>
+          <div class="workflow-icon"><i class="fa-solid fa-network-wired"></i></div>
+          <h4>Machine Learning Analysis</h4>
+          <p>
+            The ML model evaluates feature vectors against trained regression weights, computing statistical significance and confidence scores.
+          </p>
+        </div>
+
+        <div class="workflow-card">
+          <span class="step-number">03</span>
+          <div class="workflow-icon"><i class="fa-solid fa-square-poll-vertical"></i></div>
+          <h4>Performance Prediction</h4>
+          <p>
+            View expected score percentage, performance tier classification, factor breakdown charts, and educational guidance steps.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why EduPredict AI Section -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Real-World Problem Solving</span>
+        <h2 class="section-title">Why EduPredict AI Matters</h2>
+        <p class="section-desc">
+          "Early identification of academic difficulties can help educators provide timely support."
+        </p>
+      </div>
+
+      <div class="stakeholders-grid">
+        <div class="stakeholder-card">
+          <div style="font-size: 1.5rem; color: var(--primary); margin-bottom: 0.75rem;"><i class="fa-solid fa-user-graduate"></i></div>
+          <h4>For Students</h4>
+          <ul>
+            <li><i class="fa-solid fa-check"></i> Self-assess academic trajectory before final exams</li>
+            <li><i class="fa-solid fa-check"></i> Understand impact of attendance and self-study hours</li>
+            <li><i class="fa-solid fa-check"></i> Receive clear, achievable study suggestions</li>
+          </ul>
+        </div>
+
+        <div class="stakeholder-card">
+          <div style="font-size: 1.5rem; color: var(--primary); margin-bottom: 0.75rem;"><i class="fa-solid fa-chalkboard-user"></i></div>
+          <h4>For Teachers & Faculty</h4>
+          <ul>
+            <li><i class="fa-solid fa-check"></i> Spot struggling students weeks before mid-term evaluations</li>
+            <li><i class="fa-solid fa-check"></i> Structure targeted remedial sessions and mentoring</li>
+            <li><i class="fa-solid fa-check"></i> Monitor class-wide performance distributions</li>
+          </ul>
+        </div>
+
+        <div class="stakeholder-card">
+          <div style="font-size: 1.5rem; color: var(--primary); margin-bottom: 0.75rem;"><i class="fa-solid fa-building-columns"></i></div>
+          <h4>For Institutions</h4>
+          <ul>
+            <li><i class="fa-solid fa-check"></i> Improve overall course pass rates and retention</li>
+            <li><i class="fa-solid fa-check"></i> Data-backed institutional curriculum planning</li>
+            <li><i class="fa-solid fa-check"></i> Seamless digital academic tracking infrastructure</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technology Section -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Modern Architecture</span>
+        <h2 class="section-title">Engineered with Modern Technologies</h2>
+        <p class="section-desc">
+          A clean, decoupled full-stack architecture ready for enterprise scaling.
+        </p>
+      </div>
+
+      <div class="tech-grid">
+        <div class="tech-card">
+          <i class="fa-brands fa-html5" style="color: #e34f26;"></i>
+          <span class="tech-name">HTML5</span>
+          <span class="tech-role">Semantic Structure</span>
+        </div>
+        <div class="tech-card">
+          <i class="fa-brands fa-css3-alt" style="color: #1572b6;"></i>
+          <span class="tech-name">CSS3</span>
+          <span class="tech-role">Design System</span>
+        </div>
+        <div class="tech-card">
+          <i class="fa-brands fa-js" style="color: #f7df1e;"></i>
+          <span class="tech-name">JavaScript</span>
+          <span class="tech-role">Async Client Logic</span>
+        </div>
+        <div class="tech-card">
+          <i class="fa-brands fa-python" style="color: #3776ab;"></i>
+          <span class="tech-name">Python</span>
+          <span class="tech-role">ML Core Engine</span>
+        </div>
+        <div class="tech-card">
+          <i class="fa-solid fa-server" style="color: #000000;"></i>
+          <span class="tech-name">Flask</span>
+          <span class="tech-role">REST API Service</span>
+        </div>
+        <div class="tech-card">
+          <i class="fa-solid fa-brain" style="color: #f37626;"></i>
+          <span class="tech-name">Scikit-learn</span>
+          <span class="tech-role">Predictive Models</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Banner -->
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="cta-banner">
+        <h2>Ready to Analyze Student Performance?</h2>
+        <p>
+          Experience data-driven educational analytics with instant Machine Learning predictions.
+        </p>
+        <a href="predict.html" class="btn btn-primary btn-lg" style="background: #ffffff; color: var(--primary);">
+          <i class="fa-solid fa-bolt"></i> Start Prediction Now
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-logo">
+            <div class="brand-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+            <span>EduPredict<span class="highlight">AI</span></span>
+          </div>
+          <p>
+            Turn student data into academic insights. AI/ML-driven student performance prediction system for educators.
+          </p>
+        </div>
+
+        <div>
+          <h5 class="footer-heading">Platform</h5>
+          <ul class="footer-links">
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="predict.html">New Prediction</a></li>
+            <li><a href="history.html">Prediction History</a></li>
+            <li><a href="profile.html">System Settings</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5 class="footer-heading">About Project</h5>
+          <ul class="footer-links">
+            <li><a href="about.html">ML Architecture</a></li>
+            <li><a href="about.html#pipeline">Data Pipeline</a></li>
+            <li><a href="contact.html">Developer & Contact</a></li>
+            <li><a href="contact.html#specs">Tech Specifications</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5 class="footer-heading">Resources</h5>
+          <ul class="footer-links">
+            <li><a href="login.html">Educator Login</a></li>
+            <li><a href="register.html">Create Account</a></li>
+            <li><a href="https://github.com" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub Repository</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 EduPredict AI — B.Tech Computer Science Engineering Project.</div>
+        <div>Designed for Academic Excellence & Technical Interview Demonstration.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/app.js"></script>
+</body>
+</html>

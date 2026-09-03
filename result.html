@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="EduPredict AI — Student Prediction Result & Academic Report">
+  <title>Prediction Result — EduPredict AI</title>
+  
+  <!-- Typography & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+  <div class="app-layout" id="predictionResultView">
+    
+    <!-- Sidebar -->
+    <aside class="app-sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="brand-logo">
+          <div class="brand-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+          <span>EduPredict<span class="highlight">AI</span></span>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <span class="nav-section-title">Main Menu</span>
+        <a href="dashboard.html" class="sidebar-nav-item">
+          <i class="fa-solid fa-chart-pie"></i>
+          <span>Dashboard</span>
+        </a>
+        <a href="predict.html" class="sidebar-nav-item active">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          <span>New Prediction</span>
+        </a>
+        <a href="history.html" class="sidebar-nav-item">
+          <i class="fa-solid fa-clock-rotate-left"></i>
+          <span>Prediction History</span>
+        </a>
+
+        <span class="nav-section-title">Account & System</span>
+        <a href="profile.html" class="sidebar-nav-item">
+          <i class="fa-solid fa-user-gear"></i>
+          <span>Profile & Settings</span>
+        </a>
+        <a href="about.html" class="sidebar-nav-item">
+          <i class="fa-solid fa-circle-info"></i>
+          <span>About Model</span>
+        </a>
+        <a href="login.html" class="sidebar-nav-item logout-trigger-btn">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          <span>Logout</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="profile.html" class="user-snippet" title="Click to view Account Details">
+          <div class="user-avatar">SM</div>
+          <div class="user-meta">
+            <div class="user-meta-name user-display-name">Dr. Sarah Mitchell</div>
+            <div class="user-meta-role user-display-role">Faculty Advisor</div>
+          </div>
+          <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; color: var(--text-muted); margin-left: auto;"></i>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="app-main">
+      
+      <!-- Topbar -->
+      <header class="app-topbar">
+        <div class="topbar-left">
+          <button class="sidebar-toggle-btn" id="sidebarToggleBtn" aria-label="Toggle sidebar menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div class="topbar-title">Performance Prediction Report</div>
+        </div>
+
+        <div class="topbar-right">
+          <button class="theme-toggle-btn" aria-label="Toggle dark theme" title="Toggle Theme">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+          <button type="button" class="btn btn-secondary btn-sm" id="printReportBtn">
+            <i class="fa-solid fa-print"></i> Print Report
+          </button>
+          <a href="predict.html" class="btn btn-primary btn-sm">
+            <i class="fa-solid fa-plus"></i> Predict Another
+          </a>
+        </div>
+      </header>
+
+      <!-- Content Canvas -->
+      <div class="app-content">
+        
+        <!-- Header Banner -->
+        <div class="page-header" style="align-items: center;">
+          <div class="page-header-text">
+            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.35rem;">
+              <span class="badge badge-pill badge-neutral">Analysis Complete</span>
+              <div id="resultCategoryBadge"></div>
+            </div>
+            <h1 id="resultStudentName">Student Performance Report</h1>
+            <p id="resultStudentMeta">B.Tech CSE • Assessed using Machine Learning Prediction Model</p>
+          </div>
+          
+          <div class="result-actions-bar" style="display: flex; gap: 0.75rem;">
+            <a href="predict.html" class="btn btn-primary">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> Predict Again
+            </a>
+            <a href="history.html" class="btn btn-secondary">
+              <i class="fa-solid fa-clock-rotate-left"></i> View All in History
+            </a>
+          </div>
+        </div>
+
+        <!-- Main Results Grid -->
+        <div class="result-grid-layout">
+          
+          <!-- Result Card (Gauge & Classification) -->
+          <div class="result-card-main">
+            <div style="font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);">
+              Expected Final Score
+            </div>
+
+            <!-- SVG Circular Gauge -->
+            <div class="result-gauge-box">
+              <svg class="gauge-svg" viewBox="0 0 200 200">
+                <circle class="gauge-bg-circle" cx="100" cy="100" r="90"></circle>
+                <circle class="gauge-progress-circle" id="gaugeProgressCircle" cx="100" cy="100" r="90"></circle>
+              </svg>
+              <div class="gauge-center-content">
+                <div class="gauge-score-value" id="gaugeScoreValue">0%</div>
+                <div class="gauge-score-label">Predicted Mark</div>
+              </div>
+            </div>
+
+            <div class="confidence-chip">
+              <i class="fa-solid fa-shield-halved" style="color: var(--primary);"></i>
+              <span>Model Confidence: <strong id="resultConfidenceValue">90%</strong></span>
+            </div>
+
+            <div style="margin-top: 1.5rem; font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; max-width: 320px;">
+              The prediction is based on the academic, behavioral, and student-related factors provided.
+            </div>
+          </div>
+
+          <!-- Factor Breakdown Card -->
+          <div class="factor-breakdown-card">
+            <div class="card-header" style="margin-bottom: 1.25rem;">
+              <div class="card-title">
+                <i class="fa-solid fa-sliders" style="color: var(--primary); margin-right: 0.5rem;"></i>
+                Key Input Factor Breakdown
+              </div>
+              <span class="badge badge-neutral">Feature Vectors</span>
+            </div>
+
+            <div class="factor-item">
+              <div class="factor-header">
+                <span>Class Attendance</span>
+                <span id="factorAttendanceVal">0%</span>
+              </div>
+              <div class="factor-bar-bg">
+                <div class="factor-bar-fill" id="factorAttendanceBar" style="background: #10b981;"></div>
+              </div>
+            </div>
+
+            <div class="factor-item">
+              <div class="factor-header">
+                <span>Weekly Study Time</span>
+                <span id="factorStudyTimeVal">0 hrs</span>
+              </div>
+              <div class="factor-bar-bg">
+                <div class="factor-bar-fill" id="factorStudyTimeBar" style="background: #3b82f6;"></div>
+              </div>
+            </div>
+
+            <div class="factor-item">
+              <div class="factor-header">
+                <span>Previous Exam Score</span>
+                <span id="factorPreviousVal">0%</span>
+              </div>
+              <div class="factor-bar-bg">
+                <div class="factor-bar-fill" id="factorPreviousBar" style="background: #8b5cf6;"></div>
+              </div>
+            </div>
+
+            <div class="factor-item">
+              <div class="factor-header">
+                <span>Continuous Assignments</span>
+                <span id="factorAssignmentVal">0%</span>
+              </div>
+              <div class="factor-bar-bg">
+                <div class="factor-bar-fill" id="factorAssignmentBar" style="background: #06b6d4;"></div>
+              </div>
+            </div>
+
+            <div class="factor-item">
+              <div class="factor-header">
+                <span>Internal Assessment Score</span>
+                <span id="factorInternalVal">0%</span>
+              </div>
+              <div class="factor-bar-bg">
+                <div class="factor-bar-fill" id="factorInternalBar" style="background: #f59e0b;"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- AI Insights & Pedagogical Recommendations -->
+        <div class="insights-grid">
+          
+          <!-- Model Insights -->
+          <div class="insight-card">
+            <div class="card-header" style="margin-bottom: 0;">
+              <div class="card-title">
+                <i class="fa-solid fa-brain" style="color: var(--primary); margin-right: 0.5rem;"></i>
+                Model Insights
+              </div>
+              <span class="badge badge-neutral">Feature Weights</span>
+            </div>
+            <ul class="insight-list" id="resultInsightsList">
+              <!-- Dynamically populated -->
+            </ul>
+          </div>
+
+          <!-- Recommendations -->
+          <div class="insight-card">
+            <div class="card-header" style="margin-bottom: 0;">
+              <div class="card-title">
+                <i class="fa-solid fa-lightbulb" style="color: var(--warning); margin-right: 0.5rem;"></i>
+                Educational Recommendations
+              </div>
+              <span class="badge badge-neutral">Guidance</span>
+            </div>
+            <ul class="insight-list" id="resultRecommendationsList">
+              <!-- Dynamically populated -->
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/api.js?v=2.2"></script>
+  <script src="js/auth.js?v=2.2"></script>
+  <script src="js/app.js?v=2.2"></script>
+  <script src="js/prediction.js?v=2.2"></script>
+</body>
+</html>

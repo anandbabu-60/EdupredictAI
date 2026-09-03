@@ -1,0 +1,75 @@
+{
+  "model_name": "Linear Regression",
+  "algorithm": "LinearRegression",
+  "dataset_size": 10000,
+  "test_split": 0.2,
+  "features_count": 19,
+  "numerical_features": [
+    "Hours_Studied",
+    "Attendance",
+    "Sleep_Hours",
+    "Previous_Scores",
+    "Tutoring_Sessions",
+    "Physical_Activity"
+  ],
+  "categorical_features": [
+    "Parental_Involvement",
+    "Access_to_Resources",
+    "Extracurricular_Activities",
+    "Motivation_Level",
+    "Internet_Access",
+    "Family_Income",
+    "Teacher_Quality",
+    "School_Type",
+    "Peer_Influence",
+    "Learning_Disabilities",
+    "Parental_Education_Level",
+    "Distance_from_Home",
+    "Gender"
+  ],
+  "metrics": {
+    "r2_score": 0.9395,
+    "rmse": 2.4732,
+    "mae": 1.9768,
+    "cv_r2_mean": 0.934,
+    "cv_r2_std": 0.0038
+  },
+  "benchmark_comparison": {
+    "Linear Regression": {
+      "r2_score": 0.9395,
+      "rmse": 2.4732,
+      "mae": 1.9768,
+      "cv_r2_mean": 0.934,
+      "cv_r2_std": 0.0038
+    },
+    "Ridge Regression": {
+      "r2_score": 0.9395,
+      "rmse": 2.4732,
+      "mae": 1.9768,
+      "cv_r2_mean": 0.934,
+      "cv_r2_std": 0.0038
+    },
+    "Decision Tree": {
+      "r2_score": 0.5781,
+      "rmse": 6.5335,
+      "mae": 5.1983,
+      "cv_r2_mean": 0.5564,
+      "cv_r2_std": 0.0182
+    },
+    "Random Forest": {
+      "r2_score": 0.7986,
+      "rmse": 4.5139,
+      "mae": 3.5737,
+      "cv_r2_mean": 0.7855,
+      "cv_r2_std": 0.0084
+    },
+    "Gradient Boosting": {
+      "r2_score": 0.9059,
+      "rmse": 3.0849,
+      "mae": 2.4313,
+      "cv_r2_mean": 0.899,
+      "cv_r2_std": 0.0036
+    }
+  },
+  "training_timestamp": "2026-09-03T18:39:10.640625"
+}

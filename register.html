@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="EduPredict AI — Educator Registration">
+  <title>Register — EduPredict AI</title>
+  
+  <!-- Typography & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body class="auth-page">
+
+  <div class="auth-container">
+    <div class="auth-card">
+      <div class="auth-header">
+        <a href="index.html" class="brand-logo">
+          <div class="brand-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+          <span>EduPredict<span class="highlight">AI</span></span>
+        </a>
+        <h2 class="auth-title">Create Account</h2>
+        <p class="auth-subtitle">Join educators analyzing student performance</p>
+      </div>
+
+      <!-- Prototype Notice Banner -->
+      <div style="background: var(--info-bg); border: 1px solid var(--info-border); color: var(--info); border-radius: var(--radius-md); padding: 0.75rem 1rem; font-size: 0.825rem; margin-bottom: 1.5rem; display: flex; align-items: flex-start; gap: 0.5rem;">
+        <i class="fa-solid fa-circle-info" style="margin-top: 0.15rem;"></i>
+        <span>Create your student/educator prototype account below. You can also use <strong>Continue as Demo User</strong> on the login page for instant access.</span>
+      </div>
+
+      <form id="registerForm" novalidate>
+        <div class="form-group">
+          <label for="fullName" class="form-label">Full Name <span class="required">*</span></label>
+          <div class="input-icon-wrapper">
+            <i class="fa-solid fa-user input-icon"></i>
+            <input type="text" id="fullName" class="form-control" placeholder="Dr. Sarah Mitchell" required autocomplete="name">
+          </div>
+          <div class="invalid-feedback">Please enter your full name.</div>
+        </div>
+
+        <div class="form-group">
+          <label for="email" class="form-label">Institutional Email <span class="required">*</span></label>
+          <div class="input-icon-wrapper">
+            <i class="fa-solid fa-envelope input-icon"></i>
+            <input type="email" id="email" class="form-control" placeholder="s.mitchell@university.edu" required autocomplete="email">
+          </div>
+          <div class="invalid-feedback">Please enter a valid email address.</div>
+        </div>
+
+        <div class="form-group">
+          <label for="password" class="form-label">Password <span class="required">*</span></label>
+          <div class="input-icon-wrapper">
+            <i class="fa-solid fa-lock input-icon"></i>
+            <input type="password" id="password" class="form-control" placeholder="••••••••" required autocomplete="new-password">
+            <button type="button" class="input-action-btn" data-action="toggle-password" data-target="password" aria-label="Toggle password visibility">
+              <i class="fa-solid fa-eye"></i>
+            </button>
+          </div>
+          
+          <!-- Password Strength Indicator -->
+          <div class="password-strength-container" id="passwordStrength">
+            <div class="strength-bar-wrapper">
+              <div class="strength-segment"></div>
+              <div class="strength-segment"></div>
+              <div class="strength-segment"></div>
+              <div class="strength-segment"></div>
+            </div>
+            <div class="strength-text-row">
+              <span>Password Strength:</span>
+              <span class="strength-label">None</span>
+            </div>
+          </div>
+          <div class="invalid-feedback">Password must be at least 6 characters.</div>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword" class="form-label">Confirm Password <span class="required">*</span></label>
+          <div class="input-icon-wrapper">
+            <i class="fa-solid fa-lock-open input-icon"></i>
+            <input type="password" id="confirmPassword" class="form-control" placeholder="••••••••" required autocomplete="new-password">
+          </div>
+          <div class="invalid-feedback">Passwords do not match.</div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block btn-lg" id="registerSubmitBtn" style="margin-top: 1.5rem;">
+          <i class="fa-solid fa-user-plus"></i> Create Account
+        </button>
+      </form>
+
+      <div class="auth-footer">
+        Already have an account? <a href="login.html">Sign In</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/api.js?v=2.2"></script>
+  <script src="js/app.js?v=2.2"></script>
+  <script src="js/auth.js?v=2.2"></script>
+</body>
+</html>

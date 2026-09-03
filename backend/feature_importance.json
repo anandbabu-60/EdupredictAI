@@ -1,0 +1,21 @@
+{
+  "Motivation_Level": 13.63,
+  "Parental_Involvement": 11.49,
+  "Peer_Influence": 10.77,
+  "Access_to_Resources": 10.67,
+  "Teacher_Quality": 10.18,
+  "Hours_Studied": 8.08,
+  "Internet_Access": 7.44,
+  "Previous_Scores": 7.27,
+  "Attendance": 6.06,
+  "Learning_Disabilities": 5.16,
+  "Tutoring_Sessions": 2.78,
+  "Extracurricular_Activities": 2.53,
+  "Physical_Activity": 2.3,
+  "Sleep_Hours": 1.01,
+  "Parental_Education_Level": 0.27,
+  "Distance_from_Home": 0.17,
+  "Gender": 0.08,
+  "School_Type": 0.07,
+  "Family_Income": 0.04
+}

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="EduPredict AI — Student Academic Performance Prediction Form">
+  <title>Student Prediction — EduPredict AI</title>
+  
+  <!-- Typography & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    
+    <!-- Sidebar -->
+    <aside class="app-sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="brand-logo">
+          <div class="brand-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+          <span>EduPredict<span class="highlight">AI</span></span>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <span class="nav-section-title">Main Menu</span>
+        <a href="dashboard.html" class="sidebar-nav-item">
+          <i class="fa-solid fa-chart-pie"></i>
+          <span>Dashboard</span>
+        </a>
+        <a href="predict.html" class="sidebar-nav-item active">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          <span>New Prediction</span>
+        </a>
+        <a href="history.html" class="sidebar-nav-item">
+          <i class="fa-solid fa-clock-rotate-left"></i>
+          <span>Prediction History</span>
+        </a>
+
+        <span class="nav-section-title">Account & System</span>
+        <a href="profile.html" class="sidebar-nav-item">
+          <i class="fa-solid fa-user-gear"></i>
+          <span>Profile & Settings</span>
+        </a>
+        <a href="about.html" class="sidebar-nav-item">
+          <i class="fa-solid fa-circle-info"></i>
+          <span>About Model</span>
+        </a>
+        <a href="login.html" class="sidebar-nav-item logout-trigger-btn">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          <span>Logout</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="profile.html" class="user-snippet" title="Click to view Account Details">
+          <div class="user-avatar">SM</div>
+          <div class="user-meta">
+            <div class="user-meta-name user-display-name">Dr. Sarah Mitchell</div>
+            <div class="user-meta-role user-display-role">Faculty Advisor</div>
+          </div>
+          <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; color: var(--text-muted); margin-left: auto;"></i>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Form Content -->
+    <main class="app-main">
+      
+      <!-- Topbar -->
+      <header class="app-topbar">
+        <div class="topbar-left">
+          <button class="sidebar-toggle-btn" id="sidebarToggleBtn" aria-label="Toggle sidebar menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div class="topbar-title">Student Performance Prediction</div>
+        </div>
+
+        <div class="topbar-right">
+          <button class="theme-toggle-btn" aria-label="Toggle dark theme" title="Toggle Theme">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+          <a href="history.html" class="btn btn-secondary btn-sm">
+            <i class="fa-solid fa-clock-rotate-left"></i> History
+          </a>
+        </div>
+      </header>
+
+      <!-- Form Content Container -->
+      <div class="app-content">
+        
+        <div class="page-header">
+          <div class="page-header-text">
+            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.35rem;">
+              <h1>Student Performance Prediction</h1>
+              <div id="mlBackendBadge" class="badge badge-pill badge-neutral" style="font-size: 0.75rem; display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.25rem 0.65rem;">
+                <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 0.65rem;"></i> Checking ML Backend...
+              </div>
+            </div>
+            <p>Input academic, demographic, and behavioral metrics to generate a Scikit-learn ML Exam Score prediction.</p>
+          </div>
+          
+          <!-- Presets & Clear Controls -->
+          <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">Demo Presets:</span>
+            <button type="button" class="btn btn-secondary btn-sm" id="presetHighPerformer">
+              <i class="fa-solid fa-star" style="color: var(--success);"></i> High Performer (90%+)
+            </button>
+            <button type="button" class="btn btn-secondary btn-sm" id="presetAveragePerformer">
+              <i class="fa-solid fa-thumbs-up" style="color: var(--primary);"></i> Good Performer (75%+)
+            </button>
+            <button type="button" class="btn btn-secondary btn-sm" id="presetAtRisk">
+              <i class="fa-solid fa-triangle-exclamation" style="color: var(--danger);"></i> Academic Support (&lt;60%)
+            </button>
+            <button type="button" class="btn btn-secondary btn-sm" id="presetClearToZero" style="color: var(--danger); border-color: rgba(239, 68, 68, 0.4); background: rgba(239, 68, 68, 0.06);">
+              <i class="fa-solid fa-eraser"></i> Clear All / Set to Zero
+            </button>
+          </div>
+        </div>
+
+        <!-- 19-Feature Prediction Form -->
+        <div class="prediction-form-card">
+          <form id="predictionForm" novalidate>
+            
+            <!-- SECTION 1: STUDENT IDENTIFICATION & DEMOGRAPHICS -->
+            <div class="form-section-block">
+              <div class="section-block-title">
+                <span class="section-badge">1</span>
+                <span>Student Identity & Demographics</span>
+              </div>
+              <div class="section-block-subtitle">Student identification for record keeping and gender feature</div>
+
+              <div class="form-grid-3">
+                <div class="form-group">
+                  <label for="studentName" class="form-label">Student Full Name <span class="required">*</span></label>
+                  <div class="input-icon-wrapper">
+                    <i class="fa-solid fa-user input-icon"></i>
+                    <input type="text" id="studentName" class="form-control" placeholder="Enter student full name (e.g. Sophia Chen)" required>
+                  </div>
+                  <div class="invalid-feedback">Student name must be at least 2 characters.</div>
+                </div>
+
+                <div class="form-group">
+                  <label for="gradeClass" class="form-label">Class / Semester <span class="required">*</span></label>
+                  <div class="input-icon-wrapper">
+                    <i class="fa-solid fa-graduation-cap input-icon"></i>
+                    <input type="text" id="gradeClass" class="form-control" placeholder="e.g. B.Tech CSE - 6th Sem" required>
+                  </div>
+                  <div class="invalid-feedback">Please provide the grade or semester.</div>
+                </div>
+
+                <div class="form-group">
+                  <label for="Gender" class="form-label">Gender (Feature 19) <span class="required">*</span></label>
+                  <select id="Gender" class="form-control" required>
+                    <option value="Female">Female</option>
+                    <option value="Male" selected>Male</option>
+                  </select>
+                  <span class="form-helper">Demographic attribute</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECTION 2: ACADEMIC & TIME ALLOCATION METRICS -->
+            <div class="form-section-block">
+              <div class="section-block-title">
+                <span class="section-badge">2</span>
+                <span>Core Academic & Time Allocation Metrics</span>
+              </div>
+              <div class="section-block-subtitle">Quantitative inputs evaluated by the ML regression engine</div>
+
+              <div class="form-grid-3">
+                <!-- 1. Hours Studied -->
+                <div class="form-group">
+                  <div class="range-slider-header">
+                    <label for="Hours_Studied" class="form-label" style="margin-bottom: 0;">Hours Studied (Weekly) <span class="required">*</span></label>
+                    <span class="slider-val-display" id="studyTimeDisplay">0 hrs/week</span>
+                  </div>
+                  <input type="range" id="studyTimeRange" class="custom-range-slider" min="0" max="50" value="0">
+                  <input type="number" id="Hours_Studied" class="form-control" min="0" max="50" value="0" style="margin-top: 0.5rem;" required>
+                  <span class="form-helper">Self-study hours outside lectures (0 - 50 hrs/wk)</span>
+                  <div class="invalid-feedback">Hours studied must be between 0 and 50.</div>
+                </div>
+
+                <!-- 2. Attendance -->
+                <div class="form-group">
+                  <div class="range-slider-header">
+                    <label for="Attendance" class="form-label" style="margin-bottom: 0;">Attendance (%) <span class="required">*</span></label>
+                    <span class="slider-val-display" id="attendanceDisplay">0%</span>
+                  </div>
+                  <input type="range" id="attendanceRange" class="custom-range-slider" min="0" max="100" value="0">
+                  <input type="number" id="Attendance" class="form-control" min="0" max="100" value="0" style="margin-top: 0.5rem;" required>
+                  <span class="form-helper">Lecture attendance percentage (0 - 100%)</span>
+                  <div class="invalid-feedback">Attendance must be between 0% and 100%.</div>
+                </div>
+
+                <!-- 7. Previous Scores -->
+                <div class="form-group">
+                  <div class="range-slider-header">
+                    <label for="Previous_Scores" class="form-label" style="margin-bottom: 0;">Previous Scores (%) <span class="required">*</span></label>
+                    <span class="slider-val-display" id="previousScoreDisplay">0%</span>
+                  </div>
+                  <input type="range" id="previousScoreRange" class="custom-range-slider" min="0" max="100" value="0">
+                  <input type="number" id="Previous_Scores" class="form-control" min="0" max="100" value="0" style="margin-top: 0.5rem;" required>
+                  <span class="form-helper">Prior examination/prerequisite score (0 - 100)</span>
+                  <div class="invalid-feedback">Score must be between 0 and 100.</div>
+                </div>
+              </div>
+
+              <div class="form-grid-3">
+                <!-- 10. Tutoring Sessions -->
+                <div class="form-group">
+                  <label for="Tutoring_Sessions" class="form-label">Tutoring Sessions / Month <span class="required">*</span></label>
+                  <input type="number" id="Tutoring_Sessions" class="form-control" min="0" max="10" value="0" required>
+                  <span class="form-helper">Monthly remedial or tutoring hours (0 - 10)</span>
+                  <div class="invalid-feedback">Enter a number between 0 and 10.</div>
+                </div>
+                  <span class="form-helper">Monthly remedial or tutoring hours (0 - 10)</span>
+                  <div class="invalid-feedback">Enter a number between 0 and 10.</div>
+                </div>
+
+                <!-- 6. Sleep Hours -->
+                <div class="form-group">
+                  <label for="Sleep_Hours" class="form-label">Sleep Hours / Day <span class="required">*</span></label>
+                  <input type="number" id="Sleep_Hours" class="form-control" min="4" max="12" step="0.5" value="7.5" required>
+                  <span class="form-helper">Daily sleep duration (4 - 12 hours)</span>
+                  <div class="invalid-feedback">Sleep hours must be between 4 and 12.</div>
+                </div>
+
+                <!-- 15. Physical Activity -->
+                <div class="form-group">
+                  <label for="Physical_Activity" class="form-label">Physical Activity (hrs/wk) <span class="required">*</span></label>
+                  <input type="number" id="Physical_Activity" class="form-control" min="0" max="20" step="0.5" value="5.0" required>
+                  <span class="form-helper">Weekly sports and exercise hours (0 - 20)</span>
+                  <div class="invalid-feedback">Enter hours between 0 and 20.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECTION 3: LEARNING ENVIRONMENT & INSTITUTIONAL FACTORS -->
+            <div class="form-section-block">
+              <div class="section-block-title">
+                <span class="section-badge">3</span>
+                <span>Learning Environment & Institutional Quality</span>
+              </div>
+              <div class="section-block-subtitle">Resources, teacher quality, school type, and internet accessibility</div>
+
+              <div class="form-grid-4">
+                <!-- 4. Access to Resources -->
+                <div class="form-group">
+                  <label for="Access_to_Resources" class="form-label">Access to Resources <span class="required">*</span></label>
+                  <select id="Access_to_Resources" class="form-control" required>
+                    <option value="High" selected>High (Books, Labs, Tools)</option>
+                    <option value="Medium">Medium (Standard)</option>
+                    <option value="Low">Low (Restricted)</option>
+                  </select>
+                </div>
+
+                <!-- 12. Teacher Quality -->
+                <div class="form-group">
+                  <label for="Teacher_Quality" class="form-label">Teacher Quality <span class="required">*</span></label>
+                  <select id="Teacher_Quality" class="form-control" required>
+                    <option value="High" selected>High (Experienced Faculty)</option>
+                    <option value="Medium">Medium (Standard)</option>
+                    <option value="Low">Low (Limited Support)</option>
+                  </select>
+                </div>
+
+                <!-- 13. School Type -->
+                <div class="form-group">
+                  <label for="School_Type" class="form-label">School Type <span class="required">*</span></label>
+                  <select id="School_Type" class="form-control" required>
+                    <option value="Public">Public</option>
+                    <option value="Private" selected>Private</option>
+                  </select>
+                </div>
+
+                <!-- 9. Internet Access -->
+                <div class="form-group">
+                  <label for="Internet_Access" class="form-label">Internet Access <span class="required">*</span></label>
+                  <select id="Internet_Access" class="form-control" required>
+                    <option value="Yes" selected>Yes (High Speed)</option>
+                    <option value="No">No (Limited/None)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECTION 4: BEHAVIORAL & SOCIOECONOMIC FACTORS -->
+            <div class="form-section-block">
+              <div class="section-block-title">
+                <span class="section-badge">4</span>
+                <span>Behavioral, Support & Socioeconomic Factors</span>
+              </div>
+              <div class="section-block-subtitle">Motivation, family involvement, peer environment, and distance factors</div>
+
+              <div class="form-grid-4">
+                <!-- 8. Motivation Level -->
+                <div class="form-group">
+                  <label for="Motivation_Level" class="form-label">Motivation Level <span class="required">*</span></label>
+                  <select id="Motivation_Level" class="form-control" required>
+                    <option value="High" selected>High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                  </select>
+                </div>
+
+                <!-- 3. Parental Involvement -->
+                <div class="form-group">
+                  <label for="Parental_Involvement" class="form-label">Parental Involvement <span class="required">*</span></label>
+                  <select id="Parental_Involvement" class="form-control" required>
+                    <option value="High" selected>High Support</option>
+                    <option value="Medium">Medium Support</option>
+                    <option value="Low">Low Support</option>
+                  </select>
+                </div>
+
+                <!-- 17. Parental Education Level -->
+                <div class="form-group">
+                  <label for="Parental_Education_Level" class="form-label">Parent Education <span class="required">*</span></label>
+                  <select id="Parental_Education_Level" class="form-control" required>
+                    <option value="Postgraduate" selected>Postgraduate</option>
+                    <option value="College">College</option>
+                    <option value="High School">High School</option>
+                  </select>
+                </div>
+
+                <!-- 11. Family Income -->
+                <div class="form-group">
+                  <label for="Family_Income" class="form-label">Family Income <span class="required">*</span></label>
+                  <select id="Family_Income" class="form-control" required>
+                    <option value="High">High</option>
+                    <option value="Medium" selected>Medium</option>
+                    <option value="Low">Low</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-grid-4" style="margin-top: 1rem;">
+                <!-- 14. Peer Influence -->
+                <div class="form-group">
+                  <label for="Peer_Influence" class="form-label">Peer Influence <span class="required">*</span></label>
+                  <select id="Peer_Influence" class="form-control" required>
+                    <option value="Positive" selected>Positive (Study Group)</option>
+                    <option value="Neutral">Neutral</option>
+                    <option value="Negative">Negative (Distractions)</option>
+                  </select>
+                </div>
+
+                <!-- 5. Extracurricular Activities -->
+                <div class="form-group">
+                  <label for="Extracurricular_Activities" class="form-label">Extracurriculars <span class="required">*</span></label>
+                  <select id="Extracurricular_Activities" class="form-control" required>
+                    <option value="Yes" selected>Yes (Active)</option>
+                    <option value="No">No (None)</option>
+                  </select>
+                </div>
+
+                <!-- 16. Learning Disabilities -->
+                <div class="form-group">
+                  <label for="Learning_Disabilities" class="form-label">Learning Disabilities <span class="required">*</span></label>
+                  <select id="Learning_Disabilities" class="form-control" required>
+                    <option value="No" selected>No</option>
+                    <option value="Yes">Yes (Special Support)</option>
+                  </select>
+                </div>
+
+                <!-- 18. Distance from Home -->
+                <div class="form-group">
+                  <label for="Distance_from_Home" class="form-label">Distance from Campus <span class="required">*</span></label>
+                  <select id="Distance_from_Home" class="form-control" required>
+                    <option value="Near" selected>Near (&lt; 5 km)</option>
+                    <option value="Moderate">Moderate (5 - 15 km)</option>
+                    <option value="Far">Far (&gt; 15 km)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Form Actions -->
+            <div style="display: flex; align-items: center; justify-content: flex-end; gap: 1rem; margin-top: 1.5rem;">
+              <button type="button" class="btn btn-secondary" id="resetFormBtn">
+                <i class="fa-solid fa-rotate-left"></i> Reset Form
+              </button>
+              <button type="submit" class="btn btn-primary btn-lg" id="submitPredictBtn">
+                <i class="fa-solid fa-brain"></i> Predict Exam Score
+              </button>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Animated ML Processing Screen Overlay -->
+  <div class="predict-loading-overlay" id="predictLoadingOverlay">
+    <div class="ai-pulse-spinner">
+      <i class="fa-solid fa-brain"></i>
+    </div>
+    <h3 style="color: #ffffff; font-size: 1.5rem; margin-bottom: 0.5rem;">Running Scikit-learn Pipeline</h3>
+    <p style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 1.5rem;">Transforming 19 features and calculating predicted Exam Score</p>
+
+    <ul class="loading-step-list">
+      <li class="loading-step-item" id="loadStep1">
+        <i class="fa-solid fa-spinner fa-spin"></i>
+        <span>Preprocessing feature vectors & ColumnTransformer scaling...</span>
+      </li>
+      <li class="loading-step-item" id="loadStep2">
+        <i class="fa-regular fa-circle"></i>
+        <span>Evaluating Ridge/Linear regression ML model...</span>
+      </li>
+      <li class="loading-step-item" id="loadStep3">
+        <i class="fa-regular fa-circle"></i>
+        <span>Generating pedagogical recommendations & risk categorization...</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/api.js?v=2.2"></script>
+  <script src="js/auth.js?v=2.2"></script>
+  <script src="js/app.js?v=2.2"></script>
+  <script src="js/prediction.js?v=2.2"></script>
+</body>
+</html>

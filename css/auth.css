@@ -1,0 +1,280 @@
+/* ==========================================================================
+   EDUPREDICT AI — AUTHENTICATION STYLES (LOGIN & REGISTER)
+   ========================================================================== */
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1.5rem;
+  background-color: var(--bg-body);
+  position: relative;
+}
+
+.auth-container {
+  width: 100%;
+  max-width: 460px;
+}
+
+.auth-container-wide {
+  max-width: 960px;
+}
+
+.auth-split-wrapper {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+}
+
+.auth-form-side {
+  padding: 3rem 2.5rem;
+}
+
+.auth-visual-side {
+  background: linear-gradient(145deg, #1e1b4b, #312e81);
+  color: #ffffff;
+  padding: 3rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.auth-visual-side h3 {
+  color: #ffffff;
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+
+.auth-visual-side p {
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.auth-quote-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
+
+.auth-quote-card .quote-text {
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #e2e8f0;
+  margin-bottom: 0.75rem;
+}
+
+.auth-quote-card .quote-author {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.auth-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  padding: 2.75rem 2.25rem;
+  box-shadow: var(--shadow-xl);
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.auth-header .brand-logo {
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.auth-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.auth-subtitle {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.social-login-btn {
+  width: 100%;
+  background-color: var(--bg-surface);
+  color: var(--text-main);
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  margin-bottom: 1.5rem;
+}
+
+.social-login-btn:hover {
+  background-color: var(--bg-subtle);
+  border-color: var(--border-medium);
+}
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 1.5rem 0;
+  color: var(--text-subtle);
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.auth-divider::before, .auth-divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.auth-divider span {
+  padding: 0 1rem;
+}
+
+.auth-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+}
+
+.forgot-password-link {
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.forgot-password-link:hover {
+  text-decoration: underline;
+}
+
+/* --- Password Strength Indicator --- */
+.password-strength-container {
+  margin-top: 0.5rem;
+}
+
+.strength-bar-wrapper {
+  height: 4px;
+  background-color: var(--bg-muted);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  display: flex;
+  gap: 3px;
+  margin-bottom: 0.35rem;
+}
+
+.strength-segment {
+  height: 100%;
+  flex: 1;
+  background-color: var(--bg-muted);
+  transition: background-color var(--transition-base);
+}
+
+.strength-text-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--text-subtle);
+}
+
+.strength-label {
+  font-weight: 600;
+}
+
+/* Strength states */
+.strength-weak .strength-segment:nth-child(1) { background-color: var(--danger); }
+.strength-weak .strength-label { color: var(--danger); }
+
+.strength-medium .strength-segment:nth-child(1),
+.strength-medium .strength-segment:nth-child(2) { background-color: var(--warning); }
+.strength-medium .strength-label { color: var(--warning); }
+
+.strength-strong .strength-segment:nth-child(1),
+.strength-strong .strength-segment:nth-child(2),
+.strength-strong .strength-segment:nth-child(3),
+.strength-strong .strength-segment:nth-child(4) { background-color: var(--success); }
+.strength-strong .strength-label { color: var(--success); }
+
+/* --- Demo Credentials Preset Helper --- */
+.demo-preset-box {
+  background-color: var(--bg-subtle);
+  border: 1px dashed var(--border-medium);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.825rem;
+}
+
+.demo-preset-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.demo-preset-btn {
+  background-color: var(--primary-light);
+  color: var(--primary);
+  border: none;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.demo-preset-btn:hover {
+  background-color: var(--primary);
+  color: #fff;
+}
+
+.auth-footer {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.auth-footer a {
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .auth-split-wrapper {
+    grid-template-columns: 1fr;
+  }
+  .auth-visual-side {
+    display: none;
+  }
+  .auth-form-side {
+    padding: 2rem 1.5rem;
+  }
+  .auth-card {
+    padding: 2rem 1.5rem;
+  }
+}

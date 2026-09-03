@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="EduPredict AI — Searchable Student Prediction History">
+  <title>Prediction History — EduPredict AI</title>
+  
+  <!-- Typography & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+  <div class="app-layout" id="historyView">
+    
+    <!-- Sidebar -->
+    <aside class="app-sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="brand-logo">
+          <div class="brand-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+          <span>EduPredict<span class="highlight">AI</span></span>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <span class="nav-section-title">Main Menu</span>
+        <a href="dashboard.html" class="sidebar-nav-item">
+          <i class="fa-solid fa-chart-pie"></i>
+          <span>Dashboard</span>
+        </a>
+        <a href="predict.html" class="sidebar-nav-item">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          <span>New Prediction</span>
+        </a>
+        <a href="history.html" class="sidebar-nav-item active">
+          <i class="fa-solid fa-clock-rotate-left"></i>
+          <span>Prediction History</span>
+        </a>
+
+        <span class="nav-section-title">Account & System</span>
+        <a href="profile.html" class="sidebar-nav-item">
+          <i class="fa-solid fa-user-gear"></i>
+          <span>Profile & Settings</span>
+        </a>
+        <a href="about.html" class="sidebar-nav-item">
+          <i class="fa-solid fa-circle-info"></i>
+          <span>About Model</span>
+        </a>
+        <a href="login.html" class="sidebar-nav-item logout-trigger-btn">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          <span>Logout</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="profile.html" class="user-snippet" title="Click to view Account Details">
+          <div class="user-avatar">SM</div>
+          <div class="user-meta">
+            <div class="user-meta-name user-display-name">Dr. Sarah Mitchell</div>
+            <div class="user-meta-role user-display-role">Faculty Advisor</div>
+          </div>
+          <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; color: var(--text-muted); margin-left: auto;"></i>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="app-main">
+      
+      <!-- Topbar -->
+      <header class="app-topbar">
+        <div class="topbar-left">
+          <button class="sidebar-toggle-btn" id="sidebarToggleBtn" aria-label="Toggle sidebar menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div class="topbar-title">Prediction History Archive</div>
+        </div>
+
+        <div class="topbar-right">
+          <button class="theme-toggle-btn" aria-label="Toggle dark theme" title="Toggle Theme">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+          <a href="predict.html" class="btn btn-primary btn-sm">
+            <i class="fa-solid fa-plus"></i> New Prediction
+          </a>
+        </div>
+      </header>
+
+      <!-- Content Canvas -->
+      <div class="app-content">
+        
+        <div class="page-header">
+          <div class="page-header-text">
+            <h1>Student Prediction History</h1>
+            <p>Search, filter, analyze, and manage all past student performance assessments.</p>
+          </div>
+          <div>
+            <button type="button" class="btn btn-outline btn-sm" id="clearHistoryBtn" style="color: var(--danger); border-color: var(--danger);">
+              <i class="fa-solid fa-trash"></i> Clear All History
+            </button>
+          </div>
+        </div>
+
+        <!-- Controls: Search, Filter, Sort -->
+        <div class="history-controls-bar">
+          
+          <div class="search-box-wrapper">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" id="historySearchInput" class="form-control" placeholder="Search by student name or class...">
+          </div>
+
+          <div class="filter-group">
+            <select id="historyCategoryFilter" class="form-control" style="width: auto; min-width: 170px;">
+              <option value="all">All Categories</option>
+              <option value="Excellent">Excellent</option>
+              <option value="Good">Good</option>
+              <option value="Average">Average</option>
+              <option value="Needs Improvement">Needs Improvement</option>
+            </select>
+
+            <select id="historySortFilter" class="form-control" style="width: auto; min-width: 170px;">
+              <option value="date-desc">Newest First</option>
+              <option value="date-asc">Oldest First</option>
+              <option value="score-desc">Highest Score</option>
+              <option value="score-asc">Lowest Score</option>
+              <option value="name-asc">Student Name (A-Z)</option>
+            </select>
+          </div>
+
+        </div>
+
+        <!-- Records Count Indicator -->
+        <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem; font-weight: 500;" id="historyRecordsCount">
+          Showing 5 student predictions
+        </div>
+
+        <!-- History Data Table Container -->
+        <div class="table-card" id="historyTableWrapper">
+          <div class="table-responsive">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Student Name & Class</th>
+                  <th>Attendance</th>
+                  <th>Study Time</th>
+                  <th>Prev Score</th>
+                  <th>Classification</th>
+                  <th>Predicted Score</th>
+                  <th>Date</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="historyTableBody">
+                <!-- Dynamically populated via dashboard.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Empty State (Shown when list is empty or search has 0 results) -->
+        <div class="card empty-state" id="historyEmptyState" style="display: none;">
+          <div class="empty-state-icon">
+            <i class="fa-solid fa-folder-open"></i>
+          </div>
+          <h3 class="empty-state-title">No Predictions Found</h3>
+          <p class="empty-state-text">
+            No student prediction records matched your search or filter criteria. Run a new prediction to add records.
+          </p>
+          <a href="predict.html" class="btn btn-primary">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> Create New Prediction
+          </a>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/api.js?v=2.2"></script>
+  <script src="js/auth.js?v=2.2"></script>
+  <script src="js/app.js?v=2.2"></script>
+  <script src="js/dashboard.js?v=2.2"></script>
+</body>
+</html>

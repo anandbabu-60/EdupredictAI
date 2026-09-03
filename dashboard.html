@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="EduPredict AI — Academic Performance Dashboard">
+  <title>Dashboard — EduPredict AI</title>
+  
+  <!-- Typography & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+  <div class="app-layout" id="dashboardView">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="app-sidebar" id="appSidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="brand-logo">
+          <div class="brand-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+          <span>EduPredict<span class="highlight">AI</span></span>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <span class="nav-section-title">Main Menu</span>
+        <a href="dashboard.html" class="sidebar-nav-item active">
+          <i class="fa-solid fa-chart-pie"></i>
+          <span>Dashboard</span>
+        </a>
+        <a href="predict.html" class="sidebar-nav-item">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          <span>New Prediction</span>
+        </a>
+        <a href="history.html" class="sidebar-nav-item">
+          <i class="fa-solid fa-clock-rotate-left"></i>
+          <span>Prediction History</span>
+        </a>
+
+        <span class="nav-section-title">Account & System</span>
+        <a href="profile.html" class="sidebar-nav-item">
+          <i class="fa-solid fa-user-gear"></i>
+          <span>Profile & Settings</span>
+        </a>
+        <a href="about.html" class="sidebar-nav-item">
+          <i class="fa-solid fa-circle-info"></i>
+          <span>About Model</span>
+        </a>
+        <a href="login.html" class="sidebar-nav-item logout-trigger-btn">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          <span>Logout</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="profile.html" class="user-snippet" title="Click to view Account Details">
+          <div class="user-avatar">DS</div>
+          <div class="user-meta">
+            <div class="user-meta-name user-display-name">Demo Student</div>
+            <div class="user-meta-role user-display-role">Student</div>
+          </div>
+          <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; color: var(--text-muted); margin-left: auto;"></i>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="app-main">
+      
+      <!-- Topbar -->
+      <header class="app-topbar">
+        <div class="topbar-left">
+          <button class="sidebar-toggle-btn" id="sidebarToggleBtn" aria-label="Toggle sidebar menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div class="topbar-title">Academic Analytics Dashboard</div>
+        </div>
+
+        <div class="topbar-right">
+          <button class="theme-toggle-btn" aria-label="Toggle dark theme" title="Toggle Theme">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+          <button class="topbar-action-btn" aria-label="Notifications" onclick="App.showToast('All student prediction alerts are up to date.', 'info')">
+            <i class="fa-regular fa-bell"></i>
+            <span class="notification-badge"></span>
+          </button>
+          <a href="predict.html" class="btn btn-primary btn-sm">
+            <i class="fa-solid fa-plus"></i> New Prediction
+          </a>
+        </div>
+      </header>
+
+      <!-- Content Canvas -->
+      <div class="app-content">
+        
+        <!-- Page Header with Welcome message and Demo Badge -->
+        <div class="page-header">
+          <div class="page-header-text">
+            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.35rem; flex-wrap: wrap;">
+              <h1 style="margin-bottom: 0;">Welcome, <span id="dashboardWelcomeName">Demo Student</span></h1>
+              <span class="badge badge-warning badge-pill" id="demoModeBadge" style="display: none;">
+                <i class="fa-solid fa-flask"></i> DEMO MODE
+              </span>
+            </div>
+            <p>Monitor and analyze student performance using AI-powered predictions (Demonstration / Sample Records).</p>
+          </div>
+          <div style="display: flex; gap: 0.75rem;">
+            <a href="predict.html" class="btn btn-primary">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> Predict Student
+            </a>
+            <a href="history.html" class="btn btn-secondary">
+              <i class="fa-solid fa-list"></i> View History
+            </a>
+          </div>
+        </div>
+
+        <!-- Metric Summary Cards -->
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-icon-box metric-icon-primary">
+              <i class="fa-solid fa-users-viewfinder"></i>
+            </div>
+            <div class="metric-data">
+              <div class="metric-value" id="metricTotalPredictions">4</div>
+              <div class="metric-label">Total Predictions</div>
+              <div class="metric-trend trend-up">
+                <i class="fa-solid fa-database"></i> Sample Records
+              </div>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-icon-box metric-icon-success">
+              <i class="fa-solid fa-chart-line"></i>
+            </div>
+            <div class="metric-data">
+              <div class="metric-value" id="metricAvgScore">78%</div>
+              <div class="metric-label">Average Predicted Score</div>
+              <div class="metric-trend trend-up">
+                <i class="fa-solid fa-circle-check"></i> Satisfactory Range
+              </div>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-icon-box metric-icon-warning">
+              <i class="fa-solid fa-award"></i>
+            </div>
+            <div class="metric-data">
+              <div class="metric-value" id="metricExcellent">2</div>
+              <div class="metric-label">Upper Quartile (Good/Exc.)</div>
+              <div class="metric-trend trend-up">
+                <i class="fa-solid fa-star"></i> High Potential
+              </div>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-icon-box metric-icon-danger">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <div class="metric-data">
+              <div class="metric-value" id="metricAttention">1</div>
+              <div class="metric-label">Students Needing Support</div>
+              <div class="metric-trend trend-down">
+                <i class="fa-solid fa-bell"></i> Action Recommended
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dashboard Charts Layout -->
+        <div class="dashboard-visuals-grid">
+          
+          <!-- Chart 1: Distribution -->
+          <div class="chart-card">
+            <div class="card-header" style="margin-bottom: 0; padding-bottom: 0.75rem;">
+              <div class="card-title">
+                <i class="fa-solid fa-chart-pie" style="color: var(--primary); margin-right: 0.5rem;"></i>
+                Performance Tier Distribution
+              </div>
+              <span class="badge badge-neutral">Model Classification</span>
+            </div>
+            <div class="chart-container">
+              <canvas id="performanceDistChart"></canvas>
+            </div>
+          </div>
+
+          <!-- Chart 2: Correlation Trend -->
+          <div class="chart-card">
+            <div class="card-header" style="margin-bottom: 0; padding-bottom: 0.75rem;">
+              <div class="card-title">
+                <i class="fa-solid fa-chart-simple" style="color: var(--accent); margin-right: 0.5rem;"></i>
+                Attendance vs Predicted Score
+              </div>
+              <span class="badge badge-neutral">Correlation Analysis</span>
+            </div>
+            <div class="chart-container">
+              <canvas id="attendanceCorrelationChart"></canvas>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Recent Predictions Table -->
+        <div class="table-card">
+          <div class="table-header-bar">
+            <div>
+              <h3 style="font-size: 1.15rem;">Recent Student Predictions</h3>
+              <p style="font-size: 0.825rem; margin-top: 0.15rem;">Sample evaluated student profiles and ML performance ratings</p>
+            </div>
+            <a href="history.html" class="btn btn-outline btn-sm">
+              View All History <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+
+          <div class="table-responsive">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Student</th>
+                  <th>Attendance</th>
+                  <th>Study Time</th>
+                  <th>Prev Score</th>
+                  <th>Predicted Class</th>
+                  <th>Score</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="recentPredictionsTableBody">
+                <!-- Dynamically populated via dashboard.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <!-- Scripts -->
+  <script src="js/api.js?v=2.2"></script>
+  <script src="js/auth.js?v=2.2"></script>
+  <script src="js/app.js?v=2.2"></script>
+  <script src="js/dashboard.js?v=2.2"></script>
+</body>
+</html>

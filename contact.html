@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="EduPredict AI — Project Information & Contact">
+  <title>Contact & Project Details — EduPredict AI</title>
+  
+  <!-- Typography & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <span>EduPredict<span class="highlight">AI</span></span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="index.html#features" class="nav-link">Features</a></li>
+        <li><a href="index.html#how-it-works" class="nav-link">How It Works</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="contact.html" class="nav-link active">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" aria-label="Toggle dark mode" title="Toggle Theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <a href="login.html" class="btn btn-ghost">Login</a>
+        <a href="predict.html" class="btn btn-primary">
+          <i class="fa-solid fa-bolt"></i> Start Prediction
+        </a>
+        <button class="mobile-menu-btn" aria-label="Open mobile menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section class="section section-alt" style="padding: 4rem 0 3rem;">
+    <div class="container">
+      <div class="section-header" style="margin-bottom: 0;">
+        <span class="section-tag">Get in Touch</span>
+        <h1 class="section-title">Contact & Project Inquiries</h1>
+        <p class="section-desc">
+          Have questions about the student prediction model, algorithmic methodologies, or institutional deployment?
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Grid -->
+  <section class="section">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 3rem;">
+        
+        <!-- Contact Form Card -->
+        <div class="card">
+          <h3 style="margin-bottom: 1.5rem;">Send an Inquiry</h3>
+          
+          <form id="contactForm" onsubmit="event.preventDefault(); App.showToast('Thank you! Your message has been recorded.', 'success'); this.reset();">
+            <div class="form-group">
+              <label for="contactName" class="form-label">Your Name <span class="required">*</span></label>
+              <input type="text" id="contactName" class="form-control" placeholder="Dr. Alex Rivera" required>
+            </div>
+
+            <div class="form-group">
+              <label for="contactEmail" class="form-label">Email Address <span class="required">*</span></label>
+              <input type="email" id="contactEmail" class="form-control" placeholder="alex@institution.edu" required>
+            </div>
+
+            <div class="form-group">
+              <label for="contactSubject" class="form-label">Subject <span class="required">*</span></label>
+              <input type="text" id="contactSubject" class="form-control" placeholder="Model deployment query / Department pilot" required>
+            </div>
+
+            <div class="form-group">
+              <label for="contactMessage" class="form-label">Message <span class="required">*</span></label>
+              <textarea id="contactMessage" class="form-control" rows="5" placeholder="Describe your query or feedback..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg">
+              <i class="fa-solid fa-paper-plane"></i> Send Message
+            </button>
+          </form>
+        </div>
+
+        <!-- Project & Academic Information -->
+        <div id="specs">
+          <div class="card" style="margin-bottom: 2rem;">
+            <div class="card-header">
+              <div class="card-title">
+                <i class="fa-solid fa-graduation-cap" style="color: var(--primary); margin-right: 0.5rem;"></i>
+                Academic Project Profile
+              </div>
+            </div>
+            
+            <div style="display: flex; flex-direction: column; gap: 1rem; font-size: 0.9rem;">
+              <div>
+                <strong style="color: var(--text-main); display: block;">Project Title:</strong>
+                <span style="color: var(--text-muted);">EduPredict AI — Student Performance Prediction System</span>
+              </div>
+              <div>
+                <strong style="color: var(--text-main); display: block;">Domain:</strong>
+                <span style="color: var(--text-muted);">Artificial Intelligence, Machine Learning & Web Engineering</span>
+              </div>
+              <div>
+                <strong style="color: var(--text-main); display: block;">Target Level:</strong>
+                <span style="color: var(--text-muted);">B.Tech Computer Science & Engineering (CSE) Capstone</span>
+              </div>
+              <div>
+                <strong style="color: var(--text-main); display: block;">Purpose:</strong>
+                <span style="color: var(--text-muted);">Early academic risk identification & data-driven faculty guidance</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tech Stack Overview -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">
+                <i class="fa-solid fa-code" style="color: var(--accent); margin-right: 0.5rem;"></i>
+                Architecture Summary
+              </div>
+            </div>
+            
+            <div style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6;">
+              <p style="margin-bottom: 0.75rem;">
+                <strong>Frontend:</strong> HTML5, CSS3 Custom Properties, Vanilla JavaScript (ES6+), Chart.js
+              </p>
+              <p style="margin-bottom: 0.75rem;">
+                <strong>Backend Ready:</strong> Python 3.10+, Flask REST API microservice architecture
+              </p>
+              <p>
+                <strong>ML Pipeline:</strong> Scikit-learn (RandomForestRegressor, Ridge, StandardScaler), Joblib
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border: none; padding-top: 0;">
+        <div>© 2026 EduPredict AI — B.Tech Computer Science Engineering Project.</div>
+        <div><a href="index.html">Back to Home</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/app.js"></script>
+</body>
+</html>
