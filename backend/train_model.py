@@ -186,6 +186,29 @@ def build_preprocessor() -> ColumnTransformer:
     )
 
 
+def train_fast_pipeline():
+    """Rapid pipeline training (< 0.1s) for cloud startups and container bootstrapping."""
+    if DATA_PATH.exists():
+        try:
+            df = pd.read_csv(DATA_PATH)
+        except Exception:
+            df = generate_synthetic_dataset(num_samples=5000)
+    else:
+        df = generate_synthetic_dataset(num_samples=5000)
+
+    X = df[ALL_FEATURES]
+    y = df["Exam_Score"]
+
+    pipe = Pipeline(steps=[
+        ("preprocessor", build_preprocessor()),
+        ("regressor", Ridge(alpha=1.0))
+    ])
+    pipe.fit(X, y)
+    joblib.dump(pipe, MODEL_PATH)
+    logger.info(f"Fast Ridge Pipeline trained and saved to {MODEL_PATH}")
+    return pipe
+
+
 def train_and_benchmark():
     """Trains, compares, evaluates candidate models, and saves winning artifact."""
     logger.info("Starting EduPredict ML Pipeline Training & Evaluation...")

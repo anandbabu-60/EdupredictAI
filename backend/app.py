@@ -181,13 +181,11 @@ def load_artifacts():
             try:
                 logger.info("Auto-training Scikit-learn model pipeline on environment...")
                 try:
-                    from train_model import train_and_benchmark
+                    from train_model import train_fast_pipeline
                 except ImportError:
-                    from backend.train_model import train_and_benchmark
-                train_and_benchmark()
-                if MODEL_PATH.exists():
-                    model = joblib.load(MODEL_PATH)
-                    logger.info("Model pipeline successfully built and loaded.")
+                    from backend.train_model import train_fast_pipeline
+                model = train_fast_pipeline()
+                logger.info("Model pipeline successfully built and loaded in memory.")
             except Exception as train_err:
                 logger.error(f"Failed to auto-train model: {train_err}", exc_info=True)
 
