@@ -1,10 +1,10 @@
 services:
   - type: web
-    name: edupredict-ai
+    name: EdupredictAI
     env: python
-    region: oregon
+    region: singapore
     plan: free
-    buildCommand: pip install -r requirements.txt
+    buildCommand: pip install -r requirements.txt && python backend/train_model.py
     startCommand: gunicorn --chdir backend app:app --workers 2 --threads 4 --timeout 120
     envVars:
       - key: PYTHON_VERSION

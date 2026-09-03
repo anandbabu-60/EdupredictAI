@@ -180,7 +180,10 @@ def load_artifacts():
         if model is None:
             try:
                 logger.info("Auto-training Scikit-learn model pipeline on environment...")
-                from train_model import train_and_benchmark
+                try:
+                    from train_model import train_and_benchmark
+                except ImportError:
+                    from backend.train_model import train_and_benchmark
                 train_and_benchmark()
                 if MODEL_PATH.exists():
                     model = joblib.load(MODEL_PATH)
